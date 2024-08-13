@@ -55,10 +55,25 @@ class _HomeState extends State<Home> {
             height: 200,
             child: PageView(
               scrollDirection: Axis.horizontal,
-              children: const [
-                MyCard(),
-                MyCard(),
-                MyCard(),
+              children: [
+                MyCard(
+                  balance: 5200.20,
+                  cardNumber: '**** 7800',
+                  expirationDate: '10/24',
+                  cardColor: Colors.amber,
+                ),
+                MyCard(
+                  balance: 12555.00,
+                  cardNumber: '1456 **21',
+                  expirationDate: '11/26',
+                  cardColor: Colors.indigo,
+                ),
+                MyCard(
+                  balance: 586.10,
+                  cardNumber: '5670 ****',
+                  expirationDate: '03/25',
+                  cardColor: Colors.green,
+                ),
               ],
             ),
           ),

@@ -1,49 +1,59 @@
 import 'package:flutter/material.dart';
 
 class MyCard extends StatelessWidget {
-  const MyCard({super.key});
+  double balance;
+  String cardNumber;
+  String expirationDate;
+  Color cardColor;
+
+  MyCard(
+      {super.key,
+      required this.balance,
+      required this.cardNumber,
+      required this.expirationDate,
+      required this.cardColor});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(20),
-      margin: const EdgeInsets.symmetric(horizontal: 20),
+      margin: const EdgeInsets.symmetric(horizontal: 25),
       width: 300,
       decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20), color: Colors.amber),
-      child: const Column(
+          borderRadius: BorderRadius.circular(20), color: cardColor),
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Balance',
             style: TextStyle(
               color: Colors.white,
               fontSize: 20,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Text(
-            '\$5,250.20',
-            style: TextStyle(
+            '\$${balance.toString()}',
+            style: const TextStyle(
               fontSize: 30,
               color: Colors.white,
             ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 30,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                '**** 7800',
-                style: TextStyle(color: Colors.white),
+                cardNumber,
+                style: const TextStyle(color: Colors.white),
               ),
               Text(
-                '10/24',
-                style: TextStyle(
+                expirationDate,
+                style: const TextStyle(
                   color: Colors.white,
                 ),
               ),
