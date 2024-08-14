@@ -107,10 +107,41 @@ class _HomeState extends State<Home> {
               subtitle: 'Payments and income',
               icon: 'icons/analytics.png'),
           const InfoBanner(
-              title: 'History',
+              title: 'Transactions',
               subtitle: 'Transaction history',
               icon: 'icons/atm-card.png')
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey[300],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        onPressed: () {},
+        child: const Icon(Icons.beach_access_rounded),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.shade400,
+              blurRadius: 20,
+              spreadRadius: 2,
+            ),
+          ],
+        ),
+        child: BottomNavigationBar(
+          backgroundColor: Colors.white,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+            ),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.settings), label: 'Settings'),
+          ],
+        ),
       ),
       drawer: Drawer(
         backgroundColor: Colors.grey[350],

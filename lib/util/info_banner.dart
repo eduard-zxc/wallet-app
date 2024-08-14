@@ -14,6 +14,7 @@ class InfoBanner extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {},
       contentPadding: const EdgeInsets.fromLTRB(25, 20, 25, 0),
       leading: Image.asset(icon),
       title: Text(title),
