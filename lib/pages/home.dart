@@ -1,6 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:wallet_app/util/action_button.dart';
+import 'package:wallet_app/util/info_banner.dart';
 import 'package:wallet_app/util/my_card.dart';
 
 class Home extends StatefulWidget {
@@ -87,11 +88,32 @@ class _HomeState extends State<Home> {
             count: 3,
             effect: const ExpandingDotsEffect(activeDotColor: Colors.black),
           ),
-
-          // 3 buttons -> send + pay + bills
-
-          // column -> stats + transactions
+          Container(
+            margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+            child: const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                // 3 buttons -> send + pay + bills
+                ActionButton(label: 'Send', customIcon: 'icons/send.png'),
+                ActionButton(
+                    label: 'Pay', customIcon: 'icons/card-payment.png'),
+                ActionButton(label: 'Bills', customIcon: 'icons/bill.png'),
+              ],
+            ),
+          ),
+          // stats + transactions
+          const InfoBanner(
+              title: 'Statistics',
+              subtitle: 'Payments and income',
+              icon: 'icons/analytics.png'),
+          const InfoBanner(
+              title: 'History',
+              subtitle: 'Transaction history',
+              icon: 'icons/atm-card.png')
         ],
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey[350],
       ),
     );
   }
