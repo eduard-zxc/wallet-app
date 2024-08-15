@@ -41,83 +41,93 @@ class _HomeState extends State<Home> {
               ],
             ),
             FloatingActionButton.small(
-              onPressed: () {},
+              heroTag: 'btn2',
+              onPressed: () {
+                Navigator.pushNamed(context, '/profile');
+              },
               backgroundColor: Colors.grey[350],
-              child: const Icon(Icons.add),
+              child: const Icon(Icons.verified_user),
             ),
           ],
         ),
       ),
       backgroundColor: Colors.grey[300],
-      body: Column(
-        children: [
-          const SizedBox(
-            height: 25,
-          ),
-          // cards
-          SizedBox(
-            height: 200,
-            child: PageView(
-              controller: _controller,
-              scrollDirection: Axis.horizontal,
-              children: const [
-                MyCard(
-                  balance: 5200.20,
-                  cardNumber: '**** 7800',
-                  expirationDate: '10/24',
-                  cardColor: Colors.amber,
+      body: SingleChildScrollView(
+        child: SafeArea(
+          child: Column(
+            children: [
+              const SizedBox(
+                height: 25,
+              ),
+              // cards
+              SizedBox(
+                height: 200,
+                child: PageView(
+                  controller: _controller,
+                  scrollDirection: Axis.horizontal,
+                  children: const [
+                    MyCard(
+                      balance: 5200.20,
+                      cardNumber: '**** 7800',
+                      expirationDate: '10/24',
+                      cardColor: Colors.amber,
+                    ),
+                    MyCard(
+                      balance: 12555.00,
+                      cardNumber: '1456 **21',
+                      expirationDate: '11/26',
+                      cardColor: Colors.indigo,
+                    ),
+                    MyCard(
+                      balance: 586.10,
+                      cardNumber: '5670 ****',
+                      expirationDate: '03/25',
+                      cardColor: Colors.green,
+                    ),
+                  ],
                 ),
-                MyCard(
-                  balance: 12555.00,
-                  cardNumber: '1456 **21',
-                  expirationDate: '11/26',
-                  cardColor: Colors.indigo,
+              ),
+              const SizedBox(height: 20),
+              SmoothPageIndicator(
+                controller: _controller,
+                count: 3,
+                effect: const ExpandingDotsEffect(activeDotColor: Colors.black),
+              ),
+              Container(
+                margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
+                child: const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // 3 buttons -> send + pay + bills
+                    ActionButton(label: 'Send', customIcon: 'icons/send.png'),
+                    ActionButton(
+                        label: 'Pay', customIcon: 'icons/card-payment.png'),
+                    ActionButton(label: 'Bills', customIcon: 'icons/bill.png'),
+                  ],
                 ),
-                MyCard(
-                  balance: 586.10,
-                  cardNumber: '5670 ****',
-                  expirationDate: '03/25',
-                  cardColor: Colors.green,
-                ),
-              ],
-            ),
+              ),
+              // stats + transactions
+              const InfoBanner(
+                  title: 'Statistics',
+                  subtitle: 'Payments and income',
+                  icon: 'icons/analytics.png'),
+              const InfoBanner(
+                  title: 'Transactions',
+                  subtitle: 'Transaction history',
+                  icon: 'icons/atm-card.png')
+            ],
           ),
-          const SizedBox(height: 20),
-          SmoothPageIndicator(
-            controller: _controller,
-            count: 3,
-            effect: const ExpandingDotsEffect(activeDotColor: Colors.black),
-          ),
-          Container(
-            margin: const EdgeInsets.fromLTRB(25, 10, 25, 0),
-            child: const Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                // 3 buttons -> send + pay + bills
-                ActionButton(label: 'Send', customIcon: 'icons/send.png'),
-                ActionButton(
-                    label: 'Pay', customIcon: 'icons/card-payment.png'),
-                ActionButton(label: 'Bills', customIcon: 'icons/bill.png'),
-              ],
-            ),
-          ),
-          // stats + transactions
-          const InfoBanner(
-              title: 'Statistics',
-              subtitle: 'Payments and income',
-              icon: 'icons/analytics.png'),
-          const InfoBanner(
-              title: 'Transactions',
-              subtitle: 'Transaction history',
-              icon: 'icons/atm-card.png')
-        ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: 'btn1',
         backgroundColor: Colors.grey[300],
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushNamed(context, '/');
+        },
         child: const Icon(Icons.beach_access_rounded),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
@@ -134,10 +144,7 @@ class _HomeState extends State<Home> {
         child: BottomNavigationBar(
           backgroundColor: Colors.white,
           items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home',
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
             BottomNavigationBarItem(
                 icon: Icon(Icons.settings), label: 'Settings'),
           ],
@@ -145,6 +152,19 @@ class _HomeState extends State<Home> {
       ),
       drawer: Drawer(
         backgroundColor: Colors.grey[350],
+        child: Container(
+          color: Colors.grey[400],
+          height: 100,
+          width: 100,
+          child: Theme(
+            data: Theme.of(context).copyWith(
+                dividerTheme:
+                    const DividerThemeData(color: Colors.transparent)),
+            child: const DrawerHeader(
+              child: Column(),
+            ),
+          ),
+        ),
       ),
     );
   }
