@@ -1,8 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 import 'package:wallet_app/util/action_button.dart';
 import 'package:wallet_app/util/info_banner.dart';
 import 'package:wallet_app/util/my_card.dart';
+import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -43,10 +45,32 @@ class _HomeState extends State<Home> {
             FloatingActionButton.small(
               heroTag: 'btn2',
               onPressed: () {
-                Navigator.pushNamed(context, '/profile');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => ProfileScreen(
+                      appBar: AppBar(
+                        title: const Text('Profile'),
+                      ),
+                      showDeleteConfirmationDialog: true,
+                      actions: [
+                        SignedOutAction(
+                          (context) {
+                            Navigator.of(context).pop();
+                          },
+                        ),
+                      ],
+                      // cupertinoNavigationBar: const CupertinoNavigationBar(
+                      //   leading: const Icon(Icons.abc),
+                      //   backgroundColor: Colors.amber,
+                      //   middle: Text('Some text'),
+                      // ),
+                    ),
+                  ),
+                );
               },
               backgroundColor: Colors.grey[350],
-              child: const Icon(Icons.verified_user),
+              child: SizedBox(width: 25, child: Image.asset('icons/user.png')),
             ),
           ],
         ),

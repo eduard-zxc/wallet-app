@@ -4,7 +4,7 @@ import 'package:wallet_app/pages/home.dart';
 import 'package:wallet_app/pages/login.dart';
 
 import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_ui_auth/firebase_ui_auth.dart';
+// import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +27,7 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const AuthGate(),
         '/home': (context) => const Home(),
-        '/profile': (context) => const ProfileScreen(),
+        // '/profile': (context) => const ProfileScreen(),
       },
     );
   }
